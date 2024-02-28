@@ -30,10 +30,11 @@ pub fn main() anyerror!void {
     const file = try std.fs.cwd().openFile(args[1], .{});
     defer file.close();
 
-    var csv_tokenizer = &try csv.CsvTokenizer(std.fs.File.Reader).init(file.reader(), buffer, .{});
+    var csv_tokenizer = try csv.CsvTokenizer(std.fs.File.Reader).init(file.reader(), buffer, .{});
     const stdout = std.io.getStdOut().writer();
+    var next = try csv_tokenizer.next();
 
-    while (try csv_tokenizer.next()) |token| {
+    while (next) |token| {
         switch (token) {
             .field => |val| {
                 try stdout.writeAll(val);
@@ -43,5 +44,6 @@ pub fn main() anyerror!void {
                 try stdout.writeAll("\n");
             },
         }
+        next = try csv_tokenizer.next();
     }
 }
