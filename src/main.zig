@@ -30,7 +30,7 @@ pub fn main() anyerror!void {
     const file = try std.fs.cwd().openFile(args[1], .{});
     defer file.close();
 
-    const csv_tokenizer = &try csv.CsvTokenizer(std.fs.File.Reader).init(file.reader(), buffer, .{});
+    var csv_tokenizer = &try csv.CsvTokenizer(std.fs.File.Reader).init(file.reader(), buffer, .{});
     const stdout = std.io.getStdOut().writer();
 
     while (try csv_tokenizer.next()) |token| {
