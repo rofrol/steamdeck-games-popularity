@@ -16,7 +16,7 @@
     // internet connectivity.
     .dependencies = .{
         .@"zig-csv" = .{
-            .url = "https://github.com/rofrol/zig-csv/archive/c8bbbeb894ef6835a4c0341fc2326b476a3e86d4.tar.gz",
+            .url = "https://github.com/rofrol/beho--zig-csv/archive/c8bbbeb894ef6835a4c0341fc2326b476a3e86d4.tar.gz",
             .hash = "1220f2a95848b5edaaf04bf6a32797ae05d39a5640a3384b3b40681f2931ea3698e7",
         },
     },
