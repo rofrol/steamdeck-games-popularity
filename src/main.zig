@@ -1,16 +1,5 @@
 const std = @import("std");
 const csv = @import("csv");
-//
-// pub fn main() !void {
-//     const allocator = std.heap.page_allocator;
-//
-//     const size_limit = std.math.maxInt(u32); // or any other suitable limit
-//     const file_path = "steamdeck-games-popularity.csv";
-//     const file = try std.fs.cwd().openFile(file_path, .{ .mode = .read_only });
-//     defer file.close();
-//     const csvFile = try file.readToEndAlloc(allocator, size_limit);
-//
-// const csv = @import("csv");
 
 pub fn main() anyerror!void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
