@@ -21,9 +21,8 @@ pub fn main() anyerror!void {
 
     var csv_tokenizer = try csv.CsvTokenizer(std.fs.File.Reader).init(file.reader(), buffer, .{});
     const stdout = std.io.getStdOut().writer();
-    var next = try csv_tokenizer.next();
 
-    while (next) |token| {
+    while (try csv_tokenizer.next()) |token| {
         switch (token) {
             .field => |val| {
                 try stdout.writeAll(val);
@@ -33,6 +32,5 @@ pub fn main() anyerror!void {
                 try stdout.writeAll("\n");
             },
         }
-        next = try csv_tokenizer.next();
     }
 }
