@@ -22,6 +22,7 @@ pub fn main() anyerror!void {
     var csv_tokenizer = try csv.CsvTokenizer(std.fs.File.Reader).init(file.reader(), buffer, .{});
     const stdout = std.io.getStdOut().writer();
 
+    try stdout.writeAll("\n");
     while (try csv_tokenizer.next()) |token| {
         switch (token) {
             .field => |val| {
