@@ -15,8 +15,8 @@ pub fn main() anyerror!void {
         std.log.warn("Single arg is expected", .{});
         std.process.exit(1);
     }
-
-    const file = try std.fs.cwd().openFile(args[1], .{});
+    const file_path = args[1];
+    const file = try std.fs.cwd().openFile(file_path, .{ .mode = .read_only });
     defer file.close();
 
     var csv_tokenizer = try csv.CsvTokenizer(std.fs.File.Reader).init(file.reader(), buffer, .{});
