@@ -26,8 +26,13 @@ pub fn main() anyerror!void {
     while (try csv_tokenizer.next()) |token| {
         switch (token) {
             .field => |val| {
-                try stdout.writeAll(val);
-                try stdout.writeAll("\t");
+                // std.debug.print("?", @TypeOf(val));
+                if (val.len == 0) {
+                    try stdout.writeAll("EMPTY");
+                } else {
+                    try stdout.writeAll(val);
+                }
+                try stdout.writeAll(",");
             },
             .row_end => {
                 try stdout.writeAll("\n");
